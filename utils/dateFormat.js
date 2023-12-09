@@ -8,7 +8,7 @@ const TimestampSchema = new mongoose.Schema({
     type: Date,
     default: Date.now, 
     get: function(timestamp) {
-      return dateFormat(timestamp); // Use the dateFormat utility to format the timestamp
+      return dateFormat(timestamp); 
     },
   },
 });

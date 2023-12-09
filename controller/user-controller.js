@@ -55,13 +55,12 @@ module.exports = {
   // Add a friend to a user
   async addFriend(req, res) {
     try {
-      // Logic to add a friend to a user
-      
-      const dbUserData = await User.findOneAndUpdate(
-        { _id: req.params.id },
-        { $addToSet: { friends: req.params.friendId } },
-        { new: true }
-      );
+      const dbUserData = await User.findOneAndUpdate({ _id: req.params.userId }, { $addToSet: { friends: req.params.friendId } }, { new: true });
+
+      if (!dbUserData) {
+        return res.status(404).json({ message: 'No user with this id!' });
+      }
+
       res.json(dbUserData);
     } catch (err) {
       console.log(err);
@@ -85,18 +84,16 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Remove a friend from a user
+  
   async removeFriend(req, res) {
     try {
-      // Logic to remove a friend from a user
-      // Assuming req.params.id represents the user's ID
-      // and req.params.friendId represents the friend's ID
-      const user = await User.findOneAndUpdate(
-        { _id: req.params.id },
-        { $pull: { friends: req.params.friendId } },
-        { new: true }
-      );
-      res.json(user);
+      const dbUserData = await User.findOneAndUpdate({ _id: req.params.userId }, { $pull: { friends: req.params.friendId } }, { new: true });
+
+      if (!dbUserData) {
+        return res.status(404).json({ message: 'No user with this id!' });
+      }
+
+      res.json(dbUserData);
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
