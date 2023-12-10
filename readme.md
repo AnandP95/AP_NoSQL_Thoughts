@@ -54,7 +54,7 @@ This AP_Nosql_Thoughts app is a part of a challenge to build an API for a social
 * `GET /api/users/`:userId: Get a specific user by ID.
 * `PUT /api/users/`:userId: Update a user profile.
 * `DELETE /api/users/`:userId: Delete a user profile.
-* 
+
 
 ## Video WalkThrough
 * Link of the demo video : [https://drive.google.com/file/d/1x2ys2ub60TBinDemN217oNsoowSrl51I/view]
